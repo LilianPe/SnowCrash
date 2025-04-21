@@ -1,0 +1,9 @@
+Grace a ltrace ./level07, on voit que le 
+binaire utilise /bin/echo pour afficher quelquechose
+et getenv pour recuperer le logname dans env
+
+En modifiant logname on se rend compte que le code fait:
+system(echo getenv("LOGNAME"))
+
+Plus qu a faire:
+export LOGNAME="level07;getflag"

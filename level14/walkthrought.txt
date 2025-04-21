@@ -1,0 +1,27 @@
+C'est parti pour analyser getflag avec gdb
+
+On voit vite que gdb est bloque par quelquechose
+Le meme message s'affiche a chaque fois
+"You should not reverse this"
+
+En faisant disassemble main, on voit:
+
+0x08048989 <+67>:    call   0x8048540 <ptrace@plt>
+
+c'est ca qui bloque gdb
+
+Pour le bypass, on peut faire:
+
+catch syscall ptrace
+commands 1
+set $eax = 0
+continue
+end
+
+Cela fait qu'a chaque syscall de ptrace, $eax
+sera set a 0, comme si ptrace n'avait rien trouve
+
+ensuite, on voit qu'il y a un getuid, puis une comparaison
+entre l'uid et 30xx (le id des user flag)
+donc plus qu a break avant la comparaison avec 3014
+(id du user), set $eax a 3014 (0xbc6) et on a le flag

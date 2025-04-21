@@ -1,0 +1,7 @@
+Avec ltrace et strace ./level08 token
+On voit que level08 verifie que le nom du fichier et refuse
+de l'ouvrir si c'est token
+
+Donc juste a creer un lien symbolique vers token ayant un 
+nom different et ca marche
+

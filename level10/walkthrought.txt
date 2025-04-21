@@ -1,0 +1,18 @@
+level10 envoie un fichier sur le host passe en parametre
+donc creer un serveur qui ecoute sur le port 6969
+(nc -l 6969 -> Ouvre localhost sur le port 6969)
+le passer en parametre
+
+Cependant, le script verifie les permissions avec
+access() malgres le bit suid
+
+La technique consiste donc a cree 1 fichier auquel
+on a acces, et alterner en boucle un lien symbolique
+entre ce fichier et token
+
+avec le bon timing, access passe car on a acces au fichier
+vise par le lien symbolique, puis le lien symbolique
+pointe vers token, puis il est envoye au serveur
+Et on recois donc token sur le serveur que l'on 
+a ouvert.
+

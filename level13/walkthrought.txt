@@ -1,0 +1,16 @@
+En allant dans le binaire avec gdb et en changeant
+la valeure recuperee par setuid en la metant a 4242
+
+details:
+
+gdb ./level13
+disassemble main
+on voit un appel a getuid puis une cmp entre
+le resultat (stocke dans %eax, et $0x80486c8)
+on peut alors faure:
+break *0x080485a6 (met un breakpoint juste avant la comparaison)
+start
+set $eax = 0x80486c8 (on met 4242 a la place de 2013)
+continue
+
+On recupere ce token: 2A31L79asukciNyi8uppkEuSx

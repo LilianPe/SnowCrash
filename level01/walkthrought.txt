@@ -1,0 +1,3 @@
+on trouve un mdp hashe dans /ect/passwd
+on le decode avec JhonTheRipper
+On a le mdp pour le flag

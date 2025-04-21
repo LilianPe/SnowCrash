@@ -1,0 +1,11 @@
+On a un executable et un token
+L'executable ne peut pas etre analyser pas ltrace mais
+en faisant des tests on comprends qu'il sert a coder
+un message en ajoutant au char sa position dans la 
+string
+
+On code donc un programme qui fait l'inverse
+Attention a cat le token directement dans le programme
+et a pas le copier coller dedans ou en entree,
+copier coller des char invalides les modifies et 
+le decryptage n'est plus valide.
