@@ -1,3 +1,8 @@
 on trouve un mdp hashe dans /ect/passwd
-on le decode avec JhonTheRipper
+on le decode avec JhonTheRipper:
+john --single ./hash.txt
+Puis 
+cat ~/.john/john.pot
+42hDRfypTqqnw:abcdefg
+
 On a le mdp pour le flag

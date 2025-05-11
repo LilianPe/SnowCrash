@@ -1,1 +1,18 @@
+find / -user flag00 2>/dev/null
+Cela nous donne les fichiers appartenant a flag00
+
+On trouve:
+/usr/sbin/john
+
+level00@SnowCrash:~$ cat /usr/sbin/john
+cdiiddwpgswtgt
+
+On decode cela avec le code Ceasar (voir fichier python)
+
 nottoohardhere permet d'avoir le flag
+
+level00@SnowCrash:~$ su flag00
+Password:
+Don't forget to launch getflag !
+flag00@SnowCrash:~$ getflag
+Check flag.Here is your token : x24ti5gi3x0ol2eh4esiuxias

@@ -1,4 +1,5 @@
-Analyse de level02.txt avec wireshark, on trouve password:
+Analyse de level02.txt avec wireshark, on trouve en suivant les packets
+password:
 ft_wandr...NDRel.L0L
 
 Cela ne marche pas, mais en lisant les packet en hexdump, on voit que les . sont des DEL (7f)

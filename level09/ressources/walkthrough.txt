@@ -1,5 +1,5 @@
 On a un executable et un token
-L'executable ne peut pas etre analyser pas ltrace mais
+L'executable ne peut pas etre analyser par ltrace mais
 en faisant des tests on comprends qu'il sert a coder
 un message en ajoutant au char sa position dans la 
 string

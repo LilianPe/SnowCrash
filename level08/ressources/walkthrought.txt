@@ -4,4 +4,3 @@ de l'ouvrir si c'est token
 
 Donc juste a creer un lien symbolique vers token ayant un 
 nom different et ca marche
-
